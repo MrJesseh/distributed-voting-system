@@ -2,7 +2,7 @@
   "name": "distributed-voting-system",
   "version": "1.0.0",
   "description": "A distributed voting system for Distributed Voting Class",
-  "main": "src/index.js",
+  "main": "api/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
