@@ -9,6 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@seald-io/nedb": "^4.0.4",
     "express": "^4.19.2",
     "socket.io": "^4.7.5"
   }
