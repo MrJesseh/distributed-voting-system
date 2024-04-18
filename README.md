@@ -18,7 +18,7 @@ Ensure you have Node.js installed on your machine to run the server. Node.js can
 To set up the project, clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/yourusername/distributed-voting-system.git
+git clone https://github.com/MrJesseh/distributed-voting-system.git
 cd distributed-voting-system
 npm install
 ```
