@@ -37,6 +37,12 @@ class Database {
         }
         return true;
     }
+
+    async createPoll(title, options, isOpen){
+        let results = new Array(options.length).fill(0);
+        let id = new Date().getTime();
+        await this.polls.insertAsync({id: id, title: title, options: options, results: results, isOpen: isOpen});
+    }
     
     async incrementVote(id, option){
         // Ensure the poll that we are attempting to increment exists.
