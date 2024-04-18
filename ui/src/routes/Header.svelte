@@ -1,5 +1,5 @@
 <script>
-  import { Row } from '@sveltestrap/sveltestrap';
+  import { Row } from "@sveltestrap/sveltestrap";
 </script>
 
 <Row class="my-1">

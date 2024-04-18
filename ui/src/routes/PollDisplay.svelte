@@ -1,10 +1,10 @@
 <script lang="ts">
-  import type { Poll } from '$lib/types';
-  import { colors, findMaxIndex, sum } from '$lib';
+  import type { Poll } from "$lib/types";
+  import { colors, findMaxIndex, sum } from "$lib";
   import {
     Badge, Button, Card, CardBody, CardTitle, Col, Container, Icon,
     ListGroup, ListGroupItem, Progress, Row
-  } from '@sveltestrap/sveltestrap';
+  } from "@sveltestrap/sveltestrap";
 
   export let poll: Poll;
   export let selectedOptions: Map<number, number>;

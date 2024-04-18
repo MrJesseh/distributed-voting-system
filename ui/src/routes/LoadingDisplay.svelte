@@ -1,7 +1,7 @@
 <script>
-  import { fade } from 'svelte/transition';
-  import { loadingMessages, randomItem, toSentenceCase } from '$lib';
-  import { Col, Progress, Row } from '@sveltestrap/sveltestrap';
+  import { fade } from "svelte/transition";
+  import { loadingMessages, randomItem, toSentenceCase } from "$lib";
+  import { Col, Progress, Row } from "@sveltestrap/sveltestrap";
 </script>
 
 <div transition:fade={{ duration: 300, delay: 0 }}>

@@ -1,16 +1,16 @@
 <script lang="ts">
-  import ioClient from 'socket.io-client';
-  import { onMount } from 'svelte';
-  import { fade } from 'svelte/transition';
-  import { type Color, Container, Styles } from '@sveltestrap/sveltestrap';
+  import ioClient from "socket.io-client";
+  import { onMount } from "svelte";
+  import { fade } from "svelte/transition";
+  import { type Color, Container, Styles } from "@sveltestrap/sveltestrap";
 
-  import { endpoint } from '$lib';
-  import type { Poll, AlertMessage } from '$lib/types';
-  import ErrorDisplay from './ErrorDisplay.svelte';
-  import Alerts from './Alerts.svelte';
-  import Header from './Header.svelte';
-  import PollDisplay from './PollDisplay.svelte';
-  import LoadingDisplay from './LoadingDisplay.svelte';
+  import { endpoint } from "$lib";
+  import type { Poll, AlertMessage } from "$lib/types";
+  import ErrorDisplay from "./ErrorDisplay.svelte";
+  import Alerts from "./Alerts.svelte";
+  import Header from "./Header.svelte";
+  import PollDisplay from "./PollDisplay.svelte";
+  import LoadingDisplay from "./LoadingDisplay.svelte";
 
   $: selectedOptions = new Map<number, number>();
 
@@ -20,7 +20,7 @@
   let isErrorOpen: boolean = false;
   let alerts: AlertMessage[] = [];
 
-  const io = ioClient(endpoint, { transports: ['websocket'] });
+  const io = ioClient(endpoint, { transports: ["websocket"] });
 
   onMount(async () => {
     try {
@@ -37,7 +37,7 @@
       isLoading = false;
     }
     // Listen for vote responses from the server.
-    io.on('votes', async (newPoll: Poll) => {
+    io.on("votes", async (newPoll: Poll) => {
       polls[polls.findIndex((poll) => poll.id === newPoll.id)] = newPoll;
       polls = polls;
     });
@@ -47,7 +47,7 @@
     isErrorOpen = !isErrorOpen;
   };
 
-  const addAlert = (message: string, icon: string = 'patch-check', color: Color | string = 'success') => {
+  const addAlert = (message: string, icon: string = "patch-check", color: Color | string = "success") => {
     const alert: AlertMessage = {
       id: new Date().getTime(),
       message,
@@ -78,11 +78,11 @@
       // We can safely assume that it has the pollId in the Map because of the if statement.
       const optionIndex = selectedOptions.get(pollId) as number;
       await fetch(`${endpoint}/api/polls`, {
-        method: 'POST',
-        mode: 'no-cors',
+        method: "POST",
+        mode: "no-cors",
         body: JSON.stringify({
-          'id': pollId,
-          'option': optionIndex
+          "id": pollId,
+          "option": optionIndex
         })
       });
       const option = polls.find(p => p.id === pollId)?.options[optionIndex];

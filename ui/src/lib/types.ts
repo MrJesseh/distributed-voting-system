@@ -1,4 +1,4 @@
-import type { Color } from '@sveltestrap/sveltestrap';
+import type { Color } from "@sveltestrap/sveltestrap";
 
 export interface Poll {
   id: number;

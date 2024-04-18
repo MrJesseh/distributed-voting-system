@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { Button, Col, Container, Offcanvas, Row, Icon } from '@sveltestrap/sveltestrap';
-  import { fade } from 'svelte/transition';
+  import { Button, Col, Container, Offcanvas, Row, Icon } from "@sveltestrap/sveltestrap";
+  import { fade } from "svelte/transition";
 
   export let error: Error | null = null;
   export let toggleError: () => void = () => {

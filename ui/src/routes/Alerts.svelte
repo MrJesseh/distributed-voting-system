@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { Alert, Icon } from '@sveltestrap/sveltestrap';
-  import { fade } from 'svelte/transition';
-  import type { AlertMessage } from '$lib/types';
+  import { Alert, Icon } from "@sveltestrap/sveltestrap";
+  import { fade } from "svelte/transition";
+  import type { AlertMessage } from "$lib/types";
 
   export let alerts: AlertMessage[];
 </script>
