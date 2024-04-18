@@ -71,7 +71,7 @@ app.use(handler);
 
 // Open the port and start processing the queue.
 server.listen(port, () =>{
-  console.log(`Server is listening on PORT ${port}.`);
+  console.log(`[✅] Server is listening on PORT ${port}.`);
 });
 q.startProcessing(interval);
 
