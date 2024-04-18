@@ -1,7 +1,6 @@
 // Packages
 import express from "express";
 import { createServer } from "node:http";
-import path from "node:path";
 import { Server } from "socket.io";
 import { Queue } from "./queue.js";
 import { db } from "./data/Database.js";
@@ -12,6 +11,10 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server);
 const port = 3000;
+
+// Queue stuff
+const q = new Queue();
+const interval = 250;
 
 // CORS
 app.use(function(req, res, next) {
@@ -24,8 +27,7 @@ app.get("/healthcheck", (req, res) => {
   res.end("ok");
 });
 
-// Queue stuff
-const q = new Queue();
+
 
 // Routes =====================
 
@@ -71,5 +73,5 @@ app.use(handler);
 server.listen(port, () =>{
   console.log(`Server is listening on PORT ${port}.`);
 });
-q.startProcessing(1000);
+q.startProcessing(interval);
 
