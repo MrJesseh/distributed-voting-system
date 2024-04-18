@@ -68,6 +68,8 @@ app.post("/api/polls", express.json({ type: "*/*" }), async function(req, res) {
 app.use(handler);
 
 // Open the port and start processing the queue.
-server.listen(port);
+server.listen(port, () =>{
+  console.log(`Server is listening on PORT ${port}.`);
+});
 q.startProcessing(1000);
 
