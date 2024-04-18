@@ -25,7 +25,7 @@ npm install
 
 ## Running the Application
 
-1. Make sure you are in the root folder `/distributed-voting-system/
+1. Make sure you are in the root folder `/distributed-voting-system/`
 
 2. Run the start script.
 
