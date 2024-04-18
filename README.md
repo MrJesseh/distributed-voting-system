@@ -13,21 +13,16 @@ This Distributed Voting System is a real-time application built using Svelte for
 
 Ensure you have Node.js installed on your machine to run the server. Node.js can be downloaded from [Node.js official website](https://nodejs.org/).
 
-## Installation
+## Installation & Running the Project
 
-To set up the project, clone the repository and install dependencies:
-
+1. Clone the repository:
 ```bash
 git clone https://github.com/MrJesseh/distributed-voting-system.git
-cd distributed-voting-system
-npm install
 ```
 
-## Running the Application
+2. Make sure you are in the root folder `/distributed-voting-system/`
 
-1. Make sure you are in the root folder `/distributed-voting-system/`
-
-2. Run the start script.
+3. Run the start script.
 
 ```bash
 ./start.sh
@@ -40,3 +35,12 @@ Then navigate to `http://localhost:3000`.
 `GET /api/polls`: Retrieves all available polls.
 
 `POST /api/polls`: Submits a vote to a specific poll.
+
+For the post request, the body should be as follows:
+```json
+{
+    "id": 1,
+    "option": 1
+}
+```
+Where `id` (number) is the id of the poll you are posting a vote to, and `option` (number) is the index of the option the person chose.
