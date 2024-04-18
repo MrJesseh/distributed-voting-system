@@ -36,4 +36,5 @@ Then navigate to `http://localhost:3000`.
 ## API Endpoints
 
 `GET /api/polls`: Retrieves all available polls.
+
 `POST /api/polls`: Submits a vote to a specific poll.
