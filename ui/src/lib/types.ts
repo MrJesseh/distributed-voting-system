@@ -10,10 +10,6 @@ export interface Poll {
 	_id: string;
 }
 
-export interface PollsResponse {
-	polls: Poll[];
-}
-
 export interface AlertMessage {
 	id: number,
 	message: string,

@@ -1,6 +1,5 @@
 // place files you want to import through the `$lib` alias in this folder.
 
-import type { Poll } from '$lib/types';
 import type { Color } from '@sveltestrap/sveltestrap';
 
 /**
@@ -13,45 +12,9 @@ export const sum = (...arr: number[]) => [...arr].reduce((acc, val) => acc + val
 export const findMaxIndex = (results: number[]): number => results.indexOf(Math.max(...results));
 
 /**
- * Test polls for showing off functionality.
+ * The endpoint to fetch polls from.
  */
-export const polls: Poll[] = [
-	{
-		id: 1,
-		title: 'What is your favorite season?',
-		options: ['Spring', 'Summer', 'Winter'],
-		results: [123, 789, 456],
-		isOpen: true
-	},
-	{
-		id: 2,
-		title: 'What is your preferred pet?',
-		options: ['Dog', 'Cat', 'Bird'],
-		results: [100, 50, 10],
-		isOpen: true
-	},
-	{
-		id: 3,
-		title: 'Which cuisine do you prefer?',
-		options: ['Italian', 'Chinese', 'Mexican'],
-		results: [75, 50, 150],
-		isOpen: true
-	},
-	{
-		id: 4,
-		title: 'What type of music do you prefer?',
-		options: ['Rock', 'Pop', 'Jazz'],
-		results: [100, 90, 50],
-		isOpen: true
-	},
-	{
-		id: 5,
-		title: 'What kind of movies do you prefer?',
-		options: ['Action', 'Comedy', 'Drama'],
-		results: [90, 100, 70],
-		isOpen: false
-	}
-];
+export const endpoint: string = "http://localhost:3000";
 
 /**
  * Colors to use for each poll on the screen.
