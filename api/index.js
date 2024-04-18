@@ -20,8 +20,19 @@ const db = require('./data/Database');
 
 // Routes =====================
 
+// Test route with index.html.
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../ui/index.html'));
+});
+
+// Socket stuff.
 io.on('connection', (socket) => {
-  console.log('a user connected');
+  console.log('A user has connected to the socket.');
+
+  // Send the votes through the socket.
+  q.emitter.on('processedQueue', (votes) => {
+    socket.emit('votes', votes);
+  });
 });
 
 // Endpoint for getting the list of available polls.
@@ -53,3 +64,4 @@ app.post('/api/polls',  express.json({ type: "*/*" }), async function(req, res){
 // Open the port and start processing the queue.
 server.listen(port);
 q.startProcessing(1000);
+

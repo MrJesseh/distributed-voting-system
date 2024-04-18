@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UI</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    <script src="/socket.io/socket.io.js"></script>
+<script>
+  const socket = io();
+  socket.on('votes', (votes) => {
+    console.log(votes);
+  });
+</script>
+</body>
+</html>

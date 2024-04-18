@@ -1,4 +1,4 @@
-{"uid":4,"title":"Do you like this class?","options":["Yes","No"],"_id":"GiysUHsYBTVFpX8B"}
-{"uid":2,"title":"What is your favorite season?","options":["Winter","Spring","Summer","Fall"],"_id":"qPcNSX357tvcmCO6"}
-{"uid":1,"title":"What is your favorite color?","options":["Blue","Green","Red","Yello"],"_id":"wXj7rkxmXBDSfL8b"}
-{"uid":3,"title":"What is your major?","options":["Computer Science","Software Engineering"],"_id":"zcLE3yTf9IwPVUTe"}
+{"id":4,"title":"Do you like this class?","options":["Yes","No"],"_id":"GiysUHsYBTVFpX8B"}
+{"id":2,"title":"What is your favorite season?","options":["Winter","Spring","Summer","Fall"],"_id":"qPcNSX357tvcmCO6"}
+{"id":1,"title":"What is your favorite color?","options":["Blue","Green","Red","Yello"],"_id":"wXj7rkxmXBDSfL8b"}
+{"id":3,"title":"What is your major?","options":["Computer Science","Software Engineering"],"_id":"zcLE3yTf9IwPVUTe"}

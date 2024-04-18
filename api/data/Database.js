@@ -35,7 +35,7 @@ class Database {
     async pollExists(id){
         let data;
         try{
-            data = await this.polls.findOneAsync({id});
+            data = await this.polls.findOneAsync({id: id});
         }catch(error){
             console.log(error);
             return false;
@@ -55,7 +55,7 @@ class Database {
         update[`options.${option}`] = 1;
 
         // Increment the specified vote.
-        await this.votes.updateAsync({uid: id}, { $inc: update }, {upsert: false});
+        await this.votes.updateAsync({id: id}, { $inc: update }, {upsert: false});
     }
 }
 module.exports = new Database();
