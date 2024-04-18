@@ -25,10 +25,12 @@ npm install
 
 ## Running the Application
 
-Simply run the start script:
+1. Make sure you are in the root folder `/distributed-voting-system/
+
+2. Run the start script.
 
 ```bash
-npm start
+./start.sh
 ```
 
 Then navigate to `http://localhost:3000`.
