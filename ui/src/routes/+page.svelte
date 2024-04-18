@@ -1,59 +1,51 @@
 <script lang="ts">
+	import { fade } from "svelte/transition";
 	import {
-		Badge,
-		Button,
-		Card,
-		CardBody,
-		CardTitle,
-		Col,
-		Container, ListGroup, ListGroupItem,
-		Progress,
-		Row,
-		Styles
+		Alert,
+		Badge, Button, Card, CardBody, CardTitle, Col, type Color, Container, Icon, ListGroup,
+		ListGroupItem, Progress, Row, Styles
 	} from '@sveltestrap/sveltestrap';
-	import type { Poll } from '$lib/types';
-	import type { Color } from '@sveltestrap/sveltestrap';
 
-	const sum = (...arr: number[]) => [...arr].reduce((acc, val) => acc + val, 0);
+	import { sum, findMaxIndex, polls, colors } from '$lib';
+	import type { AlertMessage } from '$lib/types';
 
-	export const polls: Poll[] = [
-		{
-			id: 1,
-			title: 'What is your favorite season?',
-			options: ['Spring', 'Summer', 'Winter'],
-			results: [123, 789, 456],
-			isOpen: true
-		},
-		{
-			id: 2,
-			title: 'What is your preferred pet?',
-			options: ['Dog', 'Cat', 'Bird'],
-			results: [100, 50, 10],
-			isOpen: true
-		},
-		{
-			id: 3,
-			title: 'Which cuisine do you prefer?',
-			options: ['Italian', 'Chinese', 'Mexican'],
-			results: [75, 50, 150],
-			isOpen: true
-		},
-		{
-			id: 4,
-			title: 'What type of music do you prefer?',
-			options: ['Rock', 'Pop', 'Jazz'],
-			results: [100, 90, 50],
-			isOpen: true
-		},
-		{
-			id: 5,
-			title: 'What kind of movies do you prefer?',
-			options: ['Action', 'Comedy', 'Drama'],
-			results: [90, 100, 70],
-			isOpen: false
+	$: selectedOptions = new Map<number, number>();
+
+	let alerts: AlertMessage[] = [];
+
+	const addAlert = (message: string, icon: string = "patch-check", color: Color | string = "success") => {
+		const alert: AlertMessage = {
+			id: new Date().getTime(),
+			message,
+			icon,
+			color
+		};
+		alerts = [...alerts, alert];
+		setTimeout(() => {
+			alerts = alerts.filter(a => a.id !== alert.id)
+		}, 3000);
+	}
+
+	const selectOption = (pollId: number, optionIndex: number) => {
+		selectedOptions.set(pollId, optionIndex);
+		// This line is NOT to be removed. It looks stupid, but it's 100% necessary.
+		// JS Maps are not reactive by default in Svelte; they're aiming to fix this in Svelte 5, but
+		// for now, we have to reassign the variable to itself to make it notice that a change has
+		// happened.
+		selectedOptions = selectedOptions;
+		console.log(`Option ${optionIndex} of poll ${pollId} selected`);
+		console.log(selectedOptions);
+	};
+
+	const vote = (pollId: number) => {
+		if (selectedOptions.has(pollId)) {
+			// We can safely assume that it has the pollId in the Map because of the if statement.
+			const optionIndex = selectedOptions.get(pollId) as number;
+			const option = polls.find(p => p.id === pollId)?.options[optionIndex];
+			console.log(`Vote recorded for poll ${pollId}.`);
+			addAlert(`Your vote for "${option}" has been recorded!`);
 		}
-	];
-	export const colors: Color[] = ['success', 'warning', 'danger'];
+	};
 </script>
 
 <Styles />
@@ -63,6 +55,13 @@
 		<h1 class="text-center">Anonymous Distributed Voting App</h1>
 		<h2 class="text-center text-light-emphasis">Democracy as it should be.</h2>
 	</Row>
+	{#each alerts as alert (alert.id)}
+		<div transition:fade={{ duration: 300, delay: 0 }}>
+			<Alert color={alert.color}>
+				<Icon name={alert.icon} /> {alert.message}
+			</Alert>
+		</div>
+	{/each}
 	{#each polls as poll (poll.id)}
 		<Row>
 			<Card class="my-1">
@@ -82,22 +81,39 @@
 						</CardTitle>
 						<ListGroup>
 							{#each poll.options as option, index}
-								<ListGroupItem color={colors[index]}>
+								<ListGroupItem
+									on:click={() => selectOption(poll.id, index)}
+									color={selectedOptions.get(poll.id) === index || (!poll.isOpen && index === findMaxIndex(poll.results)) ? colors[index] : ""}
+									action={poll.isOpen}
+									active={poll.isOpen && selectedOptions.get(poll.id) === index}
+									disabled={!poll.isOpen && index !== findMaxIndex(poll.results)}>
 									{option}
+									{#if !poll.isOpen && index === findMaxIndex(poll.results)}
+										<Icon name="check-circle" />
+									{/if}
 									<Progress
 										color={colors[index]}
 										value={(poll.results[index] / Math.max(1, sum(...poll.results))) * 100} />
 								</ListGroupItem>
 							{/each}
 						</ListGroup>
-						<Row class="my-1" />
 						<Row class="text-center">
 							<Col xs="4" />
-							<Col xs={{ size: 4 }}>
+							<Col xs="4">
 								{#if poll.isOpen}
-									<Button color="primary">Vote</Button>
+									<Button
+										color="primary"
+										disabled={selectedOptions.get(poll.id) === undefined}
+										on:click={() => vote(poll.id)}
+										class="my-1"
+									>Vote</Button>
 								{:else}
-									<Button outline color="secondary" disabled>Poll Closed</Button>
+									<Button
+										outline
+										color="secondary"
+										disabled
+										class="my-1"
+									>Poll Closed</Button>
 								{/if}
 							</Col>
 							<Col xs="4" />
