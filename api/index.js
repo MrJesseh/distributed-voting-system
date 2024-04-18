@@ -11,6 +11,12 @@ const server = createServer(app);
 const io = new Server(server);
 const port = 3000;
 
+// CORS
+app.use(function (req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  next();
+});
+
 // Queue stuff
 const queue = require('./queue');
 const q = new queue();
