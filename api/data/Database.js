@@ -6,18 +6,11 @@ const path = require('path');
  Schemas
 
 {
-  id:
-  title:
-  options: [
-    {
-      text: ""
-    }
-  ],
-}
-
-{
-  id:
-  options: [0, 0 ,0 ,0 ,0 ]
+    id: number;
+    title: string;
+    options: string[];
+    results: number[];
+    isOpen: boolean;
 }
 */
 
@@ -28,7 +21,6 @@ class Database {
         }
 
         this.polls = new Datastore({filename: path.join(__dirname, './polls.db'), autoload: true});
-        this.votes = new Datastore({filename: path.join(__dirname, './votes.db'), autoload: true});
         Database.instance = this;
     }
 
@@ -52,10 +44,10 @@ class Database {
 
         // Create the update dynamically so we can specify an index.
         const update = {};
-        update[`options.${option}`] = 1;
+        update[`results.${option}`] = 1;
 
         // Increment the specified vote.
-        await this.votes.updateAsync({id: id}, { $inc: update }, {upsert: false});
+        await this.polls.updateAsync({id: id}, { $inc: update }, {upsert: false});
     }
 }
 module.exports = new Database();

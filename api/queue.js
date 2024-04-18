@@ -16,7 +16,7 @@ module.exports = class Queue{
                 await db.incrementVote(item.id, item.option);
 
                 // Send the votes through the event emitter showing that the queue has processed votes.
-                let votes = await db.votes.findOneAsync({id: item.id});
+                let votes = await db.polls.findOneAsync({id: item.id});
                 emitter.emit('processedQueue', votes);
             }
             

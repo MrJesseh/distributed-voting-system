@@ -1,4 +1,5 @@
-{"id":4,"title":"Do you like this class?","options":["Yes","No"],"_id":"GiysUHsYBTVFpX8B"}
-{"id":2,"title":"What is your favorite season?","options":["Winter","Spring","Summer","Fall"],"_id":"qPcNSX357tvcmCO6"}
-{"id":1,"title":"What is your favorite color?","options":["Blue","Green","Red","Yello"],"_id":"wXj7rkxmXBDSfL8b"}
-{"id":3,"title":"What is your major?","options":["Computer Science","Software Engineering"],"_id":"zcLE3yTf9IwPVUTe"}
+{"id":3,"title":"What is your major?","options":["Computer Science","Software Engineering"],"results":[0,0],"isOpen":true,"_id":"LPXzEydNyMElPbuE"}
+{"id":2,"title":"What is your favorite season?","options":["Winter","Spring","Summer","Fall"],"results":[0,0,0,0],"isOpen":true,"_id":"QXQslrk5Mp2DDKPx"}
+{"id":1,"title":"What is your favorite color?","options":["Blue","Green","Yellow","Red"],"results":[6,1,0,0],"isOpen":true,"_id":"SY07ccv3B1sYN5rc"}
+{"id":5,"title":"Do you use Dark Mode or Light Mode?","options":["Dark Mode","Light Mode"],"results":[0,0],"isOpen":true,"_id":"ik6wRcLs5IBdYXM7"}
+{"id":4,"title":"Are you a cat person or a dog person?","options":["Cat person","Dog person"],"results":[0,0],"isOpen":true,"_id":"ltoJaPbR27XKcZxH"}
